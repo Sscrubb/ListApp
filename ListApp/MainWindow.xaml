@@ -1,0 +1,17 @@
+﻿<Window x:Class="ListApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:ListApp.ViewModels"
+        mc:Ignorable="d"
+        Title="ListApp" Height="500" Width="800" FontFamily="Bahnschrift" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.DataContext>
+        <viewModels:MainViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+            <ContentControl Content="{Binding CurrentView, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+        </ScrollViewer>
+    </Grid>
+</Window>
