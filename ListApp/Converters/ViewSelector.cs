@@ -15,7 +15,7 @@ namespace ListApp.Converters
                 if (viewModel is LoginViewModel)
                     return element.FindResource("LoginView") as DataTemplate;
                 else if (viewModel is SignUpViewModel)
-                    return element.FindResource("SignUpViewModel") as DataTemplate;
+                    return element.FindResource("SignUpView") as DataTemplate;
             }
             return null;
         }

@@ -1,9 +1,6 @@
-﻿using Microsoft.Win32;
-using System.ComponentModel;
-using System.IO;
+﻿using System.Data.SqlClient;
 using System.Windows;
 using System.Windows.Controls;
-using System.Data.SqlClient;
 
 namespace ListApp.Views
 {

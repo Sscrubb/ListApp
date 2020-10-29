@@ -21,9 +21,7 @@ namespace ListApp.Commands
         public void Execute(object parameter)
         {
             var name = parameter.ToString();
-            var type = Type.GetType(name);
-            
-            OnExecuted?.Invoke(new SwitchViewEventArgs() { NewViewModel = _viewManager.GetViewModel(type) });
+            _viewManager.SwitchTo(name);
         }
 
         public event Action<SwitchViewEventArgs> OnExecuted;

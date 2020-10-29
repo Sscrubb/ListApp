@@ -36,8 +36,8 @@
         <StackPanel Grid.Column="1" Grid.Row="3">
             <Button x:Name="LogIn" Width="150"  Content="LOG IN" Foreground="White" HorizontalAlignment="Stretch" Margin="30"/>
             <Button x:Name="SignUp" Width="150"  Content="SIGN UP" Foreground="White" HorizontalAlignment="Stretch" Margin="-20" 
-                    Command="{Binding SignUpCommand, Mode=OneTime}"
-                    CommandParameter="ListApp.Views.SignUpView, ListApp"/>
+                    Command="{Binding SwitchViewCommand, Mode=OneTime}"
+                    CommandParameter="SignUp"/>
         </StackPanel>
     </Grid>
 </UserControl>

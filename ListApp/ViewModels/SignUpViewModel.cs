@@ -1,10 +1,10 @@
-﻿using ListApp.Commands;
+﻿using ListApp.Services;
 
 namespace ListApp.ViewModels
 {
     public class SignUpViewModel : SwitchableViewModel
     {
-        public SignUpViewModel(SwitchViewCommand switchViewCommand) : base(switchViewCommand)
+        public SignUpViewModel(ViewModelManager paramter) : base(paramter)
         {
         }
     }

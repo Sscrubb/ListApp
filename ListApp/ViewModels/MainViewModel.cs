@@ -1,8 +1,4 @@
-﻿using ListApp.Commands;
-using ListApp.Services;
-using ListApp.Views;
-using System.ComponentModel;
-using System.Windows.Controls;
+﻿using ListApp.Services;
 
 namespace ListApp.ViewModels
 {
@@ -11,10 +7,10 @@ namespace ListApp.ViewModels
         public MainViewModel()
         {
             _viewManager = new ViewModelManager();
-            var signUpCommand = new SwitchViewCommand(_viewManager);
-            CurrentViewModel = new LoginViewModel(signUpCommand);
-            signUpCommand.OnExecuted += (v) => CurrentViewModel = v.NewViewModel;
-            _viewManager.RegisterViewModel(CurrentViewModel);
+            var factory = new SwitchableViewModelFactory(_viewManager);
+            _viewManager.Factory = factory;
+            _viewManager.SwitchedView += (v) => CurrentViewModel = v.NewViewModel;
+            _viewManager.SwitchTo("Login");
         }
 
         private BaseViewModel _currentViewModel;

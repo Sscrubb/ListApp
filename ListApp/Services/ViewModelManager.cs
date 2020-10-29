@@ -1,30 +1,24 @@
-﻿using ListApp.ViewModels;
+﻿using ListApp.Models.Events;
+using ListApp.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace ListApp.Services
 {
     public class ViewModelManager
     {
-        private List<BaseViewModel> _cachedViews = new List<BaseViewModel>();
-
-        public BaseViewModel GetViewModel(Type viewModelType)
+        private readonly Dictionary<string, BaseViewModel> _cachedViews = new Dictionary<string, BaseViewModel>();
+        public SwitchableViewModelFactory Factory { get; internal set; }
+        public void SwitchTo(string viewModelName)
         {
-            var cached = _cachedViews.FirstOrDefault(x => x.GetType() == viewModelType);
-            if (cached == null)
+            if (!_cachedViews.TryGetValue(viewModelName, out var cached))
             {
-                cached = (BaseViewModel)Activator.CreateInstance(viewModelType);
-                _cachedViews.Add(cached);
+                cached = Factory.Create(viewModelName);
+                _cachedViews.Add(viewModelName, cached);
             }
-            return cached;
+            SwitchedView?.Invoke(new SwitchViewEventArgs() { NewViewModel = cached });
         }
 
-        public void RegisterViewModel(BaseViewModel viewModel)
-        {
-            var cached = _cachedViews.FirstOrDefault(x => x.GetType() == viewModel.GetType());
-            if (cached == null)
-                _cachedViews.Add(viewModel);
-        }
+        public event Action<SwitchViewEventArgs> SwitchedView;
     }
 }

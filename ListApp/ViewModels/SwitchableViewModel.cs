@@ -1,13 +1,14 @@
 ﻿using ListApp.Commands;
+using ListApp.Services;
 using System.Windows.Input;
 
 namespace ListApp.ViewModels
 {
     public abstract class SwitchableViewModel : BaseViewModel
     {
-        public SwitchableViewModel(SwitchViewCommand switchViewCommand): base()
+        public SwitchableViewModel(ViewModelManager viewModelManager): base()
         {
-            SwitchViewCommand = switchViewCommand;
+            SwitchViewCommand = new SwitchViewCommand(viewModelManager);
         }
 
         public ICommand SwitchViewCommand { get; private set; }
