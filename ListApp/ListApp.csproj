@@ -7,9 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Commands\SignUpCommand.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Services\NewFile1.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Extended.Wpf.Toolkit" Version="4.0.1" />
     <PackageReference Include="MaterialDesignColors" Version="1.2.7" />
     <PackageReference Include="MaterialDesignThemes" Version="3.2.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
     <PackageReference Include="System.ObjectModel" Version="4.3.0" />
   </ItemGroup>
 

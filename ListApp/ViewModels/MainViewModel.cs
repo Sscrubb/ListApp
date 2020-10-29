@@ -1,4 +1,5 @@
 ﻿using ListApp.Commands;
+using ListApp.Services;
 using ListApp.Views;
 using System.ComponentModel;
 using System.Windows.Controls;
@@ -10,7 +11,8 @@ namespace ListApp.ViewModels
         public MainViewModel()
         {
             CurrentView = new LoginView();
-            SignUpCommand = new SignUpCommand();
+            var viewManager = new ViewManager();
+            SignUpCommand = new SwitchViewCommand(viewManager);
             SignUpCommand.OnExecuted += (v) => CurrentView = v.NewView;
         }
 
@@ -27,7 +29,7 @@ namespace ListApp.ViewModels
             }
         }
 
-        public SignUpCommand SignUpCommand { get; private set; }
+        public SwitchViewCommand SignUpCommand { get; private set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

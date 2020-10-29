@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Data.SqlClient;
 
 namespace ListApp.Views
 {
@@ -45,9 +46,28 @@ namespace ListApp.Views
             string password = Password.Password;
             string submitPassword = SubPass.Password;
 
-            //to do: data base save
-            //using (var con = new 
+            var sqlConnection = new SqlConnection(@"Data Source=DESKTOP-JP1TLKH\SQLEXPRESS;Initial Catalog=ListApp;Integrated Security=True");
 
+            var sqlCommand = new SqlCommand("INSERT INTO [User's data] ([name], [surname], [birthDate], [login], [password], [submitPassword])" +
+                "VALUES (@name, @surname, @birthDate, @login, @password, @submitPassword)");
+
+            try
+            {
+                sqlCommand.Connection = sqlConnection;
+                sqlConnection.Open();
+                sqlCommand.Parameters.AddWithValue("@name", Name.Text);
+                sqlCommand.Parameters.AddWithValue("@surname", Surname.Text);
+                sqlCommand.Parameters.AddWithValue("@birthDate", BirthDate.Text);
+                sqlCommand.Parameters.AddWithValue("@login", Login.Text);
+                sqlCommand.Parameters.AddWithValue("@password", Password.Password);
+                sqlCommand.Parameters.AddWithValue("@submitPassword", SubPass.Password);
+                sqlCommand.ExecuteNonQuery();
+                sqlConnection.Close();
+            }
+            catch(System.Data.SqlClient.SqlException)
+            {
+                MessageBox.Show("A user with this login already exists! Choose another one.");
+            }
         }
     }
 }
