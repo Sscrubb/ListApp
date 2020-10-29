@@ -1,15 +1,15 @@
 ﻿<UserControl x:Class="ListApp.Views.SignUpView"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ListApp"
-        mc:Ignorable="d"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             Height="550" Width="auto" 
-        VerticalAlignment="Stretch"
-    xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
-    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf">
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:local="clr-namespace:ListApp"
+            mc:Ignorable="d"
+            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+            Height="550" Width="auto" 
+            VerticalAlignment="Stretch"
+            xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
+            xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf">
     <UserControl.Resources>
         
         <ControlTemplate x:Key="SignUpButton" TargetType="{x:Type ButtonBase}">
@@ -231,6 +231,11 @@
                    Margin="45 -25 45 40">
             
         </TextBlock>
+        <Button 
+                Grid.Column="1"
+                Grid.Row="8"
+                
+            >Back</Button>
         <Button Template="{DynamicResource SignUpButton}" 
                 Name="Submit"
                 Grid.Column="2"

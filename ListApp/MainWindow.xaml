@@ -4,14 +4,32 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:ListApp.ViewModels"
+        xmlns:views="clr-namespace:ListApp.Views"
+        xmlns:converters="clr-namespace:ListApp.Converters"
         mc:Ignorable="d"
         Title="ListApp" Height="500" Width="800" FontFamily="Bahnschrift" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Window.DataContext>
         <viewModels:MainViewModel/>
     </Window.DataContext>
+    <Window.Resources>
+        <ResourceDictionary>
+
+            <DataTemplate x:Key="LoginView">
+                <views:LoginView/>
+            </DataTemplate>
+
+            <DataTemplate x:Key="SignUpView">
+                <views:SignUpView/>
+            </DataTemplate>
+
+            <converters:ViewSelector x:Key="ViewSelector"/>
+
+        </ResourceDictionary>
+    </Window.Resources>
     <Grid>
         <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-            <ContentControl Content="{Binding CurrentView, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <ContentPresenter Content="{Binding CurrentViewModel, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+                              ContentTemplateSelector="{StaticResource ViewSelector}"/>
         </ScrollViewer>
     </Grid>
 </Window>

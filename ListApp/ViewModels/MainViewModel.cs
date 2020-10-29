@@ -6,36 +6,30 @@ using System.Windows.Controls;
 
 namespace ListApp.ViewModels
 {
-    public class MainViewModel : INotifyPropertyChanged
+    public class MainViewModel : BaseViewModel
     {
         public MainViewModel()
         {
-            CurrentView = new LoginView();
-            var viewManager = new ViewManager();
-            SignUpCommand = new SwitchViewCommand(viewManager);
-            SignUpCommand.OnExecuted += (v) => CurrentView = v.NewView;
+            _viewManager = new ViewModelManager();
+            var signUpCommand = new SwitchViewCommand(_viewManager);
+            CurrentViewModel = new LoginViewModel(signUpCommand);
+            signUpCommand.OnExecuted += (v) => CurrentViewModel = v.NewViewModel;
+            _viewManager.RegisterViewModel(CurrentViewModel);
         }
 
-        private UserControl _currentView;
-        public UserControl CurrentView
+        private BaseViewModel _currentViewModel;
+        private ViewModelManager _viewManager;
+        public BaseViewModel CurrentViewModel
         {
-            get => _currentView;
+            get => _currentViewModel;
             set {
-                if (_currentView != value)
+                if (_currentViewModel != value)
                 {
-                    _currentView = value;
-                    GeneratePropertyChangedEvent(nameof(CurrentView));
+                    _currentViewModel = value;
+                    GeneratePropertyChangedEvent(nameof(CurrentViewModel));
                 } 
             }
         }
 
-        public SwitchViewCommand SignUpCommand { get; private set; }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void GeneratePropertyChangedEvent(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }

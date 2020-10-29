@@ -1,9 +1,9 @@
-﻿using System.Windows.Controls;
+﻿using ListApp.ViewModels;
 
 namespace ListApp.Models.Events
 {
     public class SwitchViewEventArgs
     {
-        public UserControl NewView { get; set; }
+        public BaseViewModel NewViewModel { get; set; }
     }
 }

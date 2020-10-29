@@ -8,8 +8,8 @@ namespace ListApp.Commands
     public class SwitchViewCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
-        private readonly ViewManager _viewManager;
-        public SwitchViewCommand(ViewManager viewManager)
+        private readonly ViewModelManager _viewManager;
+        public SwitchViewCommand(ViewModelManager viewManager)
         {
             _viewManager = viewManager;
         }
@@ -23,7 +23,7 @@ namespace ListApp.Commands
             var name = parameter.ToString();
             var type = Type.GetType(name);
             
-            OnExecuted?.Invoke(new SwitchViewEventArgs() { NewView = _viewManager.GetView(type) });
+            OnExecuted?.Invoke(new SwitchViewEventArgs() { NewViewModel = _viewManager.GetViewModel(type) });
         }
 
         public event Action<SwitchViewEventArgs> OnExecuted;

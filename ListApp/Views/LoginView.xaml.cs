@@ -19,10 +19,5 @@ namespace ListApp.Views
                 
             }
         }
-
-        private void Password_PasswordChanged(object sender, System.Windows.RoutedEventArgs e)
-        {
-
-        }
     }
 }
