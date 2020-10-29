@@ -25,7 +25,8 @@
         <StackPanel Grid.Column="1" Grid.Row="2">
             <TextBlock Text="LOGIN" TextAlignment="Center" Margin="0 30 0 35" FontSize="18" FontFamily="banhschrift" FontWeight="DemiBold"/>
             <TextBox Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" x:Name="Login" Width="300" FontFamily="bahnschrift" FontSize="16" Height="43" Margin="-20" TextAlignment="Center"
-                     BorderBrush="#259E35" BorderThickness="1" VerticalContentAlignment="Top" TextChanged="Login_TextChanged"/>
+                     BorderBrush="#259E35" BorderThickness="1" VerticalContentAlignment="Top" TextChanged="Login_TextChanged"
+                     Text="{Binding Path=Login, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock Text="PASSWORD" TextAlignment="Center" Margin="40" FontSize="18" FontFamily="banhschrift" FontWeight="DemiBold"/>
             <PasswordBox Name="Password" Style="{StaticResource MaterialDesignOutlinedPasswordFieldPasswordBox}" FontFamily="bahnschrift" 
                          FontSize="16" Width="300" Height="43" Margin="-30 -20" HorizontalContentAlignment="Center"
