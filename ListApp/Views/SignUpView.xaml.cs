@@ -22,7 +22,7 @@ namespace ListApp.Views
             }
         }
 
-        private void SubPass_PasswordChanged(object sender, System.Windows.RoutedEventArgs e)
+        private void SubPass_PasswordChanged(object sender, RoutedEventArgs e)
         {
             if (Password.Password.Equals(SubPass.Password))
             {
@@ -34,8 +34,9 @@ namespace ListApp.Views
             }
         }
 
-        private void SaveData_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void SaveData_Click(object sender, RoutedEventArgs e)
         {
+
             string name = Name.Text;
             string surname = Surname.Text;
             string birthDate = BirthDate.Text;
@@ -65,6 +66,7 @@ namespace ListApp.Views
             {
                 MessageBox.Show("A user with this login already exists! Choose another one.");
             }
+            MessageBox.Show("Signed up succesfully");
         }
     }
 }

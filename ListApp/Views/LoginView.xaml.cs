@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace ListApp.Views
 {
@@ -12,12 +13,15 @@ namespace ListApp.Views
             InitializeComponent();
         }
 
-        private void Login_TextChanged(object sender, TextChangedEventArgs e)
+        private void PasswordChanged(object sender, TextChangedEventArgs e)
         {
-            if (Login.Text.Length > 30)
-            {
-                
-            }
+            BindingExpression be = Password.GetBindingExpression(TextBox.TextProperty);
+            be.UpdateSource();
+        }
+        private void LoginChanged(object sender, TextChangedEventArgs e)
+        {
+            BindingExpression be = Login.GetBindingExpression(TextBox.TextProperty);
+            be.UpdateSource();
         }
     }
 }

@@ -19,6 +19,8 @@ namespace ListApp.Services
                     return new LoginViewModel(_parameter);
                 case "SignUp":
                     return new SignUpViewModel(_parameter);
+                case "Notes":
+                    return new NotesViewModel(_parameter);
                 default:
                     throw new NotImplementedException();
             }

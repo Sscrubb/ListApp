@@ -16,20 +16,10 @@
             <Grid>
                 <AdornerDecorator CacheMode="{Binding (wpf:ShadowAssist.CacheMode), RelativeSource={RelativeSource Self}}">
                     <Grid>
-                        <Border x:Name="border" Background="{DynamicResource PrimaryHueDarkBrush}"
+                        <Border x:Name="border" Background="{DynamicResource PrimaryHueMidBrush}"
+                                        BorderBrush="{DynamicResource PrimaryHueMidForegroundBrush}"
                                 CornerRadius="12" Effect="{Binding (wpf:ShadowAssist.ShadowDepth), 
                             Converter={x:Static converters:ShadowConverter.Instance}, RelativeSource={RelativeSource TemplatedParent}}"/>
-                        <ProgressBar x:Name="ProgressBar" Background="{Binding (wpf:ButtonProgressAssist.IndicatorBackground), RelativeSource={RelativeSource TemplatedParent}}"
-                                     Foreground="{Binding (wpf:ButtonProgressAssist.IndicatorForeground), RelativeSource={RelativeSource TemplatedParent}}" 
-                                     HorizontalAlignment="Left" Height="{TemplateBinding Height}" IsIndeterminate="{Binding (wpf:ButtonProgressAssist.IsIndeterminate), 
-                            RelativeSource={RelativeSource TemplatedParent}}" Minimum="{Binding (wpf:ButtonProgressAssist.Minimum), RelativeSource={RelativeSource TemplatedParent}}"
-                                     Maximum="{Binding (wpf:ButtonProgressAssist.Maximum), RelativeSource={RelativeSource TemplatedParent}}" Opacity="{Binding (wpf:ButtonProgressAssist.Opacity),
-                            RelativeSource={RelativeSource TemplatedParent}}" Style="{DynamicResource MaterialDesignLinearProgressBar}" VerticalAlignment="Center"
-                                     Value="{Binding (wpf:ButtonProgressAssist.Value),
-                            RelativeSource={RelativeSource TemplatedParent}}" 
-                                     Visibility="{Binding (wpf:ButtonProgressAssist.IsIndicatorVisible), 
-                            Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}"
-                                     Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ButtonBase}}}"/>
                     </Grid>
                 </AdornerDecorator>
                 <wpf:Ripple ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}">
@@ -45,7 +35,7 @@
             </Grid>
             <ControlTemplate.Triggers>
                 <Trigger Property="IsEnabled" Value="false">
-                    <Setter Property="Opacity" Value="0.23"/>
+                    <Setter Property="Opacity" Value="0.5"/>
                 </Trigger>
                 <Trigger Property="Border.IsMouseOver" Value="True">
                     <Setter Property="Width" Value="20"/>
@@ -205,7 +195,7 @@
                  FontFamily="Bahnschrift">
         </PasswordBox>
         <TextBlock x:Name="passTooLong" Grid.Row="6" Grid.Column="2" Height="10" Width="250" Margin="0 50 0 0" FontFamily="Bahnschrift" FontSize="10"
-                   Text="Password must not be longer, than 16 symbols.">
+                   Text="Password must be from 8 to 16 symbols.">
 
         </TextBlock>
         <PasswordBox Name="SubPass"

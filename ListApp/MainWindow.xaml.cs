@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using ListApp.Services;
+using ListApp.ViewModels;
+using System.Windows;
 
 namespace ListApp
 {
@@ -9,6 +11,10 @@ namespace ListApp
     {
         public MainWindow()
         {
+            ViewHelper.RegisterView<LoginViewModel>("LoginView");
+            ViewHelper.RegisterView<SignUpViewModel>("SignUpView");
+            ViewHelper.RegisterView<NotesViewModel>("NotesView");
+
             InitializeComponent();
         }
     }

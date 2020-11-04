@@ -1,4 +1,5 @@
-﻿using ListApp.ViewModels;
+﻿using ListApp.Services;
+using ListApp.ViewModels;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -12,10 +13,10 @@ namespace ListApp.Converters
             var viewModel = item as BaseViewModel;
             if (element != null && viewModel != null)
             {
-                if (viewModel is LoginViewModel)
-                    return element.FindResource("LoginView") as DataTemplate;
-                else if (viewModel is SignUpViewModel)
-                    return element.FindResource("SignUpView") as DataTemplate;
+                var type = viewModel.GetType();
+                string resourceKey = ViewHelper.GetViewKey(type);
+                var found = element.FindResource(resourceKey) as DataTemplate;
+                return found;
             }
             return null;
         }

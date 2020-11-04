@@ -22,6 +22,10 @@
                 <views:SignUpView/>
             </DataTemplate>
 
+            <DataTemplate x:Key="NotesView">
+                <views:NotesView/>
+            </DataTemplate>
+
             <converters:ViewSelector x:Key="ViewSelector"/>
 
         </ResourceDictionary>
