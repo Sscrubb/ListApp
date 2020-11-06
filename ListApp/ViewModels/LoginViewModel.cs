@@ -1,7 +1,6 @@
 ﻿using ListApp.Commands;
 using ListApp.Services;
 using System.Windows;
-using System.Windows.Input;
 
 namespace ListApp.ViewModels
 {
