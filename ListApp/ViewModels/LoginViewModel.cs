@@ -55,9 +55,12 @@ namespace ListApp.ViewModels
             SwitchViewCommand.Execute("Notes");
         }
 
-        public void DoWrongLogin()
+        public void DoWrongLogin(string error = "")
         {
-            MessageBox.Show("Неверный логин и / или пароль!");
+            if (string.IsNullOrEmpty(error))
+                MessageBox.Show("Неверный логин и / или пароль!");
+            else
+                MessageBox.Show( error, "Произошла ошибка!");
         }
     }
 }

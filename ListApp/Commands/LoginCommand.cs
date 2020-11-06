@@ -1,5 +1,7 @@
 ﻿using ListApp.Services;
 using System;
+using System.Data;
+using System.Data.SqlClient;
 using System.Windows.Input;
 
 namespace ListApp.Commands
@@ -27,11 +29,36 @@ namespace ListApp.Commands
         public void Execute(object parameter)
         {
             var currentInputedLogin = _input.Login;
-            // как-то проверяем.
-            if (_input.Password == "1")
+            if (DoLoginAttempt(out string error))
                 _input.DoSuccessLogin();
             else
-                _input.DoWrongLogin();
+                _input.DoWrongLogin(error);
+        }
+
+        private bool DoLoginAttempt(out string error)
+        {
+            error = string.Empty;
+            using (var sqlConnection = new SqlConnection(@"Data Source=DESKTOP-JP1TLKH\SQLEXPRESS;Initial Catalog=ListApp;Integrated Security=True"))
+            {
+                try
+                {
+                    if (sqlConnection.State != ConnectionState.Open)
+                        sqlConnection.Open();
+
+                    string query = "SELECT COUNT(1) FROM [User's data] WHERE LOGIN=@Login AND Password=@Password";
+                    var sqlCmd = new SqlCommand(query, sqlConnection);
+                    sqlCmd.CommandType = CommandType.Text;
+                    sqlCmd.Parameters.AddWithValue("@Login", _input.Login);
+                    sqlCmd.Parameters.AddWithValue("@Password", _input.Password);
+                    int count = Convert.ToInt32(sqlCmd.ExecuteScalar());
+                    return count == 1;
+                }
+                catch (Exception ex)
+                {
+                    error = ex.Message;
+                    return false;
+                }
+            }
         }
     }
 }

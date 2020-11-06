@@ -5,6 +5,6 @@
         string Login { get; }
         string Password { get; }
         void DoSuccessLogin();
-        void DoWrongLogin();
+        void DoWrongLogin(string error = "");
     }
 }
