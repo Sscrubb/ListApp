@@ -37,7 +37,7 @@
 
         <StackPanel Grid.Column="1" Grid.Row="3">
             <Button x:Name="LogIn" Width="150"  Foreground="White" HorizontalAlignment="Stretch" Margin="30"
-                    Command="{Binding LoginCommand, Mode=OneTime}">LOG IN"</Button>
+                    Command="{Binding LoginCommand, Mode=OneTime}">LOG IN</Button>
             <Button x:Name="SignUp" Width="150"  Content="SIGN UP" Foreground="White" HorizontalAlignment="Stretch" Margin="-20" 
                     Command="{Binding SwitchViewCommand, Mode=OneTime}"
                     CommandParameter="SignUp"/>
