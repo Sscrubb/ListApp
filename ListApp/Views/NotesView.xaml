@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:ListApp.Views"
         mc:Ignorable="d"
-        Height="450" Width="800" Loaded="Window_Loaded">
+        Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="250"/>
@@ -47,7 +47,7 @@
             </Grid.RowDefinitions>
 
             <Button Style="{StaticResource MaterialDesignFlatButton}"
-                    Grid.Column="0" Click="AddButton_Click">
+                    Grid.Column="0" >
                 <materialDesign:PackIcon Kind="PlusCircle"
                                          Foreground="White"
                                          Height="25"
@@ -67,13 +67,12 @@
                                          Height="25"
                                          Width="25"/>
             </Button>
-            <TextBox     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                      materialDesign:HintAssist.Hint="SEARCH..."
                      Foreground="White"
-                         Margin="5"
-                         Grid.Row="1"
-                         Grid.ColumnSpan="3"
-                         >
+                     Margin="5"
+                     Grid.Row="1"
+                     Grid.ColumnSpan="3">
             </TextBox>
         </Grid>
 
@@ -89,8 +88,8 @@
                     Background="#72F499">
             <Grid>
                 <DataGrid Background="#46CC6E"
-                          Name="dgListApp"
-                          AutoGenerateColumns="False">
+                          AutoGenerateColumns="False"
+                          ItemsSource="{Binding Path=ToDoList, Mode=OneWay}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Creation date"
                                             Width="200"
@@ -98,11 +97,11 @@
                                             IsReadOnly="True"/>
                         <DataGridTextColumn Header="Done"
                                             Width="90"
-                                            Binding="{Binding Path=Done, UpdateSourceTrigger=PropertyChanged}"
+                                            Binding="{Binding Path=Status, UpdateSourceTrigger=PropertyChanged}"
                                             IsReadOnly="False"/>
                         <DataGridTextColumn Header="Has to be done"
                                             Width="*"
-                                            Binding="{Binding Path=HasToBeDone}"
+                                            Binding="{Binding Path=Description}"
                                             IsReadOnly="False"/>
                     </DataGrid.Columns>
                 </DataGrid>

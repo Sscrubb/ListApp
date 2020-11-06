@@ -10,7 +10,9 @@ namespace ListApp.ViewModels
         {
             LoginCommand = new LoginCommand(this);
             _login = string.Empty;
-            _password = string.Empty;
+            _password = string.Empty; 
+            Login = "Buttfuckhero"; 
+            Password = "555462ul";
         }
 
         private string _login;

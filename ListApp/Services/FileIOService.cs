@@ -1,36 +1,33 @@
-﻿using ListApp.Models;
+﻿using ListApp.Models.Domain;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
-using System.Text;
 
 namespace ListApp.Services
 {
-    class FileIOService
+    public class FileIOService
     {
         private readonly string PATH;
         public FileIOService(string path)
         {
             PATH = path;
         }
-        public BindingList<ListAppModels> LoadData()
+        public List<ToDoItem> LoadData()
         {
             var fileExists = File.Exists(PATH);
             if (!fileExists)
             {
                 File.CreateText(PATH).Dispose();
-                return new BindingList<ListAppModels>();
+                return new List<ToDoItem>();
             }
             using (var reader = File.OpenText(PATH))
             {
                 var fileText = reader.ReadToEnd();
-                return JsonConvert.DeserializeObject<BindingList<ListAppModels>>(fileText);
+                return JsonConvert.DeserializeObject<List<ToDoItem>>(fileText);
             }
         }
 
-        public void SaveData(object listAppModels)
+        public void SaveData(List<ToDoItem> listAppModels)
         {
             using (StreamWriter writer = File.CreateText(PATH))
             {
